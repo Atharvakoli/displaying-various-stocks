@@ -182,16 +182,15 @@ function getStocksByPricing(req, res) {
   let pricing = req.query.pricing;
   if (pricing.toLowerCase() === 'low-to-high') {
     stocksCopy.sort((a, b) => a.price - b.price);
-  }
-  if (pricing.toLowrCase() === 'high-to-low') {
-    stocksCopy.sort((a, b) => a.price - b.price);
+  } else {
+    stocksCopy.sort((a, b) => b.price - a.price);
   }
   res.json(stocksCopy);
 }
 
 function getSortedWithGrowthRate(req, res) {
   let stocksCopy = stocks.slice();
-  let growth = req.params.growth;
+  let growth = req.query.growth;
   if (growth.toLowerCase() === 'low-to-high') {
     stocksCopy.sort((a, b) => a.growth - b.growth);
   } else {
